@@ -2,41 +2,70 @@ import { Collection, Events, REST, Routes } from "discord.js";
 import type CustomClient from "../../base/classes/CustomClient";
 import Event from "../../base/classes/Event";
 import type Command from "../../base/classes/Command";
-import { TOKEN, CLIENT_ID, DEV_SERVER } from "../../../data/constants";
+import {
+  TOKEN,
+  CLIENT_ID,
+  DEV_SERVER,
+  DEV_CLIENT_ID,
+  DEV_TOKEN,
+} from "@data/constants";
 
 export default class Ready extends Event {
-    constructor(client: CustomClient) {
-        super(client, {
-            name: Events.ClientReady,
-            description: "This event is triggered when the client is ready.",
-            once: true
-        });
+  constructor(client: CustomClient) {
+    super(client, {
+      name: Events.ClientReady,
+      description: "This event is triggered when the client is ready.",
+      once: true,
+    });
+  }
+  async Execute() {
+    console.log(`Logged in as ${this.client.user?.tag}!`);
+
+    const clientId = this.client.developmentMode ? DEV_CLIENT_ID : CLIENT_ID;
+    const rest = new REST().setToken(this.client.developmentMode ? DEV_TOKEN : TOKEN);
+
+    if (!this.client.developmentMode) {
+      const globalCommands: any = await rest.put(
+        Routes.applicationCommands(clientId),
+        {
+          body: this.GetJson(
+            this.client.commands.filter((command) => !command.dev)
+          ),
+        }
+      );
+
+      console.log(
+        `Successfully registered ${globalCommands.length} global application command(s)`
+      );
     }
-    async Execute() {
-        console.log(`Logged in as ${this.client.user?.tag}!`);
 
-        const commands: object[] = this.GetJson(this.client.commands)
+    const devCommands: any = await rest.put(
+      Routes.applicationGuildCommands(clientId, DEV_SERVER),
+      {
+        body: this.GetJson(
+          this.client.commands.filter((command) => command.dev)
+        ),
+      }
+    );
 
-        const rest = new REST().setToken(TOKEN as string);
+    console.log(
+      `Successfully registered ${devCommands.length} dev application command(s)`
+    );
+  }
 
-        const setCommands: any = await rest.put(Routes.applicationGuildCommands(CLIENT_ID as string, DEV_SERVER as string), { body: commands });
+  private GetJson(commands: Collection<string, Command>): object[] {
+    const data: object[] = [];
 
-        console.log(`Successfully registered ${setCommands.length} application command(s)`);
-    }
+    commands.forEach((command: Command) => {
+      data.push({
+        name: command.name,
+        description: command.description,
+        options: command.options,
+        default_member_permission: command.default_member_permission.toString(),
+        dm_permissions: command.dm_permissions,
+      });
+    });
 
-    private GetJson(commands: Collection<string, Command>): object[] {
-        const data: object[] = [];
-
-        commands.forEach((command: Command) => {
-            data.push({
-                name: command.name,
-                description: command.description,
-                options: command.options,
-                default_member_permission: command.default_member_permission.toString(),
-                dm_permissions: command.dm_permissions
-            });
-        });
-        
-        return data;
-    } 
+    return data;
+  }
 }

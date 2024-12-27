@@ -2,6 +2,12 @@
   "name": "aether",
   "module": "index.ts",
   "type": "module",
+  "version": "1.0.0",
+  "description": "Aether is a Discord bot.",
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "dev": "bun run src/index.ts --dev"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -10,6 +16,8 @@
   },
   "dependencies": {
     "discord.js": "^14.16.3",
-    "glob": "^11.0.0"
+    "glob": "^11.0.0",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.2"
   }
 }

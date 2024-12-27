@@ -1,7 +1,7 @@
 import { ApplicationCommandOptionType, PermissionFlagsBits } from "discord.js";
-import Command from "../base/classes/Command";
-import type CustomClient from "../base/classes/CustomClient";
-import Category from "../base/enums/Category";
+import Command from "../../base/classes/Command";
+import type CustomClient from "../../base/classes/CustomClient";
+import Category from "../../base/enums/Category";
 
 export default class Test extends Command{
     constructor(client: CustomClient){
@@ -23,7 +23,8 @@ export default class Test extends Command{
                     description: "Test Two",
                     type: ApplicationCommandOptionType.Subcommand
                 }
-            ]
+            ],
+            dev: false
         });
     }
 
