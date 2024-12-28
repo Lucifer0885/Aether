@@ -8,7 +8,7 @@ export default class Dev extends Command{
         super(client, {
             name: "dev",
             description: "Dev Command",
-            category: Category.Utilities,
+            category: Category.Developer,
             default_member_permission: PermissionFlagsBits.Administrator,
             dm_permissions: false,
             cooldown: 3,
@@ -18,6 +18,6 @@ export default class Dev extends Command{
     }
 
     Execute(interaction: ChatInputCommandInteraction): void {
-        interaction.reply({ content: "Test Command Executed!", ephemeral: true });
+        interaction.reply({ content: "Dev Command Executed!", ephemeral: true });
     }
 }
