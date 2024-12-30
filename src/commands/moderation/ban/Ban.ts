@@ -60,7 +60,7 @@ export default class Ban extends Command{
                         {
                             name: "user",
                             description: "Enter the user's id to unban",
-                            type: ApplicationCommandOptionType.User,
+                            type: ApplicationCommandOptionType.String,
                             required: true
                         },{
                             name: "reason",
