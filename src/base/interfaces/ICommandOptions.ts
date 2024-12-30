@@ -1,4 +1,4 @@
-import type Category from "@base/enums/Category";
+import type Category from "@enums/Category";
 
 export default interface ICommand {
     name: string;

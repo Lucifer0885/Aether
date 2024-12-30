@@ -1,6 +1,6 @@
 import Command from "@base/classes/Command";
 import type CustomClient from "@base/classes/CustomClient";
-import Category from "@base/enums/Category";
+import Category from "@enums/Category";
 import {
   ApplicationCommandOptionType,
   ChatInputCommandInteraction,

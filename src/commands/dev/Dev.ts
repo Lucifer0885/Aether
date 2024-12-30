@@ -1,7 +1,7 @@
 import { ChatInputCommandInteraction, PermissionFlagsBits } from "discord.js";
 import Command from "@base/classes/Command";
 import type CustomClient from "@base/classes/CustomClient";
-import Category from "@base/enums/Category";
+import Category from "@enums/Category";
 
 export default class Dev extends Command{
     constructor(client: CustomClient){
