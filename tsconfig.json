@@ -8,6 +8,7 @@
       "@events/*": ["src/events/*"],
       "@data/*": ["data/*"],
       "@enums/*": ["src/base/enums/*"],
+      "@image/*": ["image/*"],
     },
 
     // Enable latest features

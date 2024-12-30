@@ -4,6 +4,7 @@ import GuildConfig from "@base/schemas/GuildConfig";
 import {
   EmbedBuilder,
   GuildMemberRoleManager,
+  Message,
   TextChannel,
   type ChatInputCommandInteraction,
   type GuildMember,
@@ -115,7 +116,7 @@ export default class BanAdd extends SubCommand {
           embeds: [
             new EmbedBuilder()
               .setColor("Red")
-              .setThumbnail(user.user.displayAvatarURL({ size: 64 }))
+              .setThumbnail(user.displayAvatarURL({ size: 64 }))
               .setAuthor({ name: `🔨 Member ${user.user.displayName}(${user.user.tag}) Banned!` })
               .setDescription(
                 `${user} - \`${user.id}\` has been banned by ${
@@ -136,7 +137,7 @@ export default class BanAdd extends SubCommand {
               .setFooter({ text: `Actioned by ${interaction.user.tag} |  ${interaction.user.id}`, iconURL: interaction.user.displayAvatarURL({ size: 64 }) }),
           ],
         })
-        .then(async (msg: any) => {
+        .then(async (msg: Message) => {
           await msg.react("🔨");
         });
     }
@@ -156,7 +157,7 @@ export default class BanAdd extends SubCommand {
         embeds: [
           new EmbedBuilder()
             .setColor("Red")
-            .setThumbnail(user.user.displayAvatarURL({ size: 64 }))
+            .setThumbnail(user.displayAvatarURL({ size: 64 }))
             .setAuthor({ name: `🔨 Ban` })
             .setDescription(
               `🔨 ${user} - \`${user.id}\` has been banned by ${

@@ -112,7 +112,7 @@ export default class Kick extends Command {
           new EmbedBuilder()
             .setColor("Red")
             .setDescription(
-              `👢 You have been **kicked** from \`${interaction.guild?.name}\` by \`${interaction.user.username}\`(\`${interaction.user.displayName}\`).
+              `👢 You have been **kicked** from ${interaction.guild?.name} by ${interaction.member}.
               If you think this is a mistake, please contact the server staff.
               
               **Reason:** ${reason}

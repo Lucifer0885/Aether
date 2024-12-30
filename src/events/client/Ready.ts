@@ -1,4 +1,4 @@
-import { Collection, Events, REST, Routes } from "discord.js";
+import { ActivityType, Collection, Events, PresenceUpdateStatus, REST, Routes } from "discord.js";
 import type CustomClient from "@base/classes/CustomClient";
 import Event from "@base/classes/Event";
 import type Command from "@base/classes/Command";
@@ -10,6 +10,7 @@ import {
   DEV_TOKEN,
 } from "@data/constants";
 
+
 export default class Ready extends Event {
   constructor(client: CustomClient) {
     super(client, {
@@ -20,6 +21,19 @@ export default class Ready extends Event {
   }
   async Execute() {
     console.log(`Logged in as ${this.client.user?.tag}!`);
+
+    this.client.user?.setPresence({
+      activities: [
+        {
+          name: "Visual Studio Code",
+          type: ActivityType.Playing,
+          state: "with TypeScript",
+        },
+      ],
+      status: PresenceUpdateStatus.Online,
+    });
+
+    this.client.user?.setBanner("https://i.imgur.com/us5AEYY.jpeg");
 
     const clientId = this.client.developmentMode ? DEV_CLIENT_ID : CLIENT_ID;
     const rest = new REST().setToken(this.client.developmentMode ? DEV_TOKEN : TOKEN);
