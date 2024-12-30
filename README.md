@@ -13,7 +13,7 @@ To run:
 bun run start
 ```
 
-### Srart in Dev
+### Start in Dev
 ```bash
 bun run dev
 ```
