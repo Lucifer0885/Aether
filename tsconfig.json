@@ -6,7 +6,8 @@
       "@base/*": ["src/base/*"],
       "@commands/*": ["src/commands/*"],
       "@events/*": ["src/events/*"],
-      "@data/*": ["data/*"]
+      "@data/*": ["data/*"],
+      "@enums/*": ["src/base/enums/*"],
     },
 
     // Enable latest features

@@ -1,9 +1,9 @@
 import { Client, Collection, GatewayIntentBits } from "discord.js";
 import { TOKEN, DEV_TOKEN } from "@data/constants";
-import Handler from "./Handler";
-import type Command from "./Command";
-import type SubCommand from "./SubCommand";
-import type ICustomClient from "../interfaces/ICustomClient";
+import Handler from "@base/classes/Handler";
+import type Command from "@base/classes/Command";
+import type SubCommand from "@base/classes/SubCommand";
+import type ICustomClient from "@base/interfaces/ICustomClient";
 import MongoConnect from "@base/MongoConnect";
 
 export default class CustomClient extends Client implements ICustomClient {

@@ -1,6 +1,6 @@
 import type { Collection } from "discord.js";
-import type Command from "../classes/Command";
-import type SubCommand from "../classes/SubCommand";
+import type Command from "@base/classes/Command";
+import type SubCommand from "@base/classes/SubCommand";
 
 export default interface ICustomClient {
     commands: Collection<string, Command>;

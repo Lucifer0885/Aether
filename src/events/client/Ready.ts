@@ -1,7 +1,7 @@
 import { Collection, Events, REST, Routes } from "discord.js";
-import type CustomClient from "../../base/classes/CustomClient";
-import Event from "../../base/classes/Event";
-import type Command from "../../base/classes/Command";
+import type CustomClient from "@base/classes/CustomClient";
+import Event from "@base/classes/Event";
+import type Command from "@base/classes/Command";
 import {
   TOKEN,
   CLIENT_ID,

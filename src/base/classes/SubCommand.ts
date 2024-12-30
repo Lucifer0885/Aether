@@ -1,7 +1,7 @@
 import type { ChatInputCommandInteraction } from "discord.js";
-import type ISubCommand from "../interfaces/ISubCommand";
-import type CustomClient from "./CustomClient";
-import type ISubCommandOptions from "../interfaces/ISubCommandOptions";
+import type ISubCommand from "@base/interfaces/ISubCommand";
+import type CustomClient from "@base/classes/CustomClient";
+import type ISubCommandOptions from "@base/interfaces/ISubCommandOptions";
 
 export default class SubCommand implements ISubCommand{
     client: CustomClient;

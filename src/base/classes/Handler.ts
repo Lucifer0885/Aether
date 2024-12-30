@@ -1,11 +1,10 @@
-import type IHandler from "../interfaces/IHandler";
+import type IHandler from "@base/interfaces/IHandler";
 import path from "path";
-import type CustomClient from "./CustomClient";
-import Event from "./Event";
-import * as fs from "fs";
+import type CustomClient from "@base/classes/CustomClient";
+import Event from "@base/classes/Event";
 import { glob } from "glob";
-import type Command from "./Command";
-import type SubCommand from "./SubCommand";
+import type Command from "@base/classes/Command";
+import type SubCommand from "@base/classes/SubCommand";
 
 export default class Handler implements IHandler{
     client: CustomClient;
