@@ -7,6 +7,7 @@ interface IGuildConfig {
         moderation: {
             enabled: boolean;
             channelId: string;
+            channelName: string;
         };
     }
 }
@@ -18,6 +19,7 @@ export default model<IGuildConfig>("GuildConfig", new Schema<IGuildConfig>({
         moderation: {
             enabled: { type: Boolean },
             channelId: { type: String },
+            channelName: { type: String },
         },
     },
 }, {

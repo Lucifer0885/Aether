@@ -29,6 +29,9 @@ export default class LogsSet extends SubCommand {
 
         // @ts-ignore
         guild.logs[`${logType}`].channelId = channel.id;
+
+        // @ts-ignore
+        guild.logs[`${logType}`].channelName = channel.name;
         
         await guild.save();
 
