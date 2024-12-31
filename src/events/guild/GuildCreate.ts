@@ -18,7 +18,7 @@ export default class GuildDelete extends Event {
         await GuildConfig.create({ guildId: guild.id, guildName: guild.name });
       console.log(`Joined a guild!`);
     } catch (error) {
-      console.error(error);
+      console.error(`[ERROR] There was an error creating the guild in the database!`,error);
     }
 
     const onwer = await guild.fetchOwner();

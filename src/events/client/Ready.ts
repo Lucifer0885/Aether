@@ -33,7 +33,7 @@ export default class Ready extends Event {
       status: PresenceUpdateStatus.Online,
     });
 
-    this.client.user?.setBanner("https://i.imgur.com/us5AEYY.jpeg");
+    // this.client.user?.setBanner("https://i.imgur.com/us5AEYY.jpeg");
 
     const clientId = this.client.developmentMode ? DEV_CLIENT_ID : CLIENT_ID;
     const rest = new REST().setToken(this.client.developmentMode ? DEV_TOKEN : TOKEN);

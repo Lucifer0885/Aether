@@ -8,6 +8,7 @@ import {
   EmbedBuilder,
   GuildMember,
   GuildMemberRoleManager,
+  Message,
   PermissionFlagsBits,
   TextChannel,
 } from "discord.js";
@@ -157,7 +158,7 @@ export default class Kick extends Command {
             }),
           ],
         })
-        .then(async (msg) => {
+        .then(async (msg: Message) => {
           await msg.react("👢");
         });
     }

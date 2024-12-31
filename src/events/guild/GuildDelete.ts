@@ -17,7 +17,7 @@ export default class GuildDelete extends Event {
             await GuildConfig.deleteOne({ guildId: guild.id });
             console.log(`Left a guild!`);
         } catch (error) {
-            console.error(error);
+            console.error(`[ERROR] There was an error deleting the guild from the database`,error);
         }
     }
 }
