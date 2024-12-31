@@ -35,6 +35,19 @@ export default class CommandHandler extends Event {
         ephemeral: true,
       });
 
+    if (!interaction.memberPermissions?.has(command.default_member_permission)){
+      return interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setColor("Red")
+            .setDescription(
+              "❌ You do not have permission to use this command!"
+            ),
+        ],
+        ephemeral: true,
+      });
+    }
+
     const { cooldowns } = this.client;
 
     if (!cooldowns.has(command.name))
