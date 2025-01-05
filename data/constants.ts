@@ -11,3 +11,6 @@ export const DEV_IDS = ['275688865203748865'] as string[];
 //DATABASE
 export const MONGO_URL = process.env.MONGO_URL as string;
 export const DEV_MONGO_URL = process.env.DEV_MONGO_URL as string;
+
+
+export const PREFIX = process.env.PREFIX as string;
