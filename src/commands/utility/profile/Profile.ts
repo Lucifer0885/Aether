@@ -26,17 +26,22 @@ export default class Profile extends Command {
           type: ApplicationCommandOptionType.User,
           required: false,
         },
+        {
+          name: "silent",
+          description: "Silently view the profile",
+          type: ApplicationCommandOptionType.Boolean,
+          required: false,
+        }
       ],
     });
   }
 
-  async Execute(interaction: ChatInputCommandInteraction) {
+  Execute(interaction: ChatInputCommandInteraction) {
     const user = (interaction.options.getMember("user") ||
       interaction.member) as GuildMember;
-    const roles = user.roles.cache.map((r) => r.toString()).join(", ");
+    const roles = user.roles.cache.map((r) => r).join(", ").replace("@everyone", "") || "None";
     const boostingSince = user.premiumSince?.toLocaleString() || "Not boosting";
-
-    await interaction.deferReply({ ephemeral: true });
+    const silent = interaction.options.getBoolean("silent") || false;
     
     const profileEmbed = new EmbedBuilder()
       .setColor("Random")
@@ -46,11 +51,18 @@ export default class Profile extends Command {
       })
       .setThumbnail(interaction.guild?.iconURL() as string)
       .setDescription(`
-        **User:** \`${user.user.displayName}\` - \`${user.user.tag}\` - \`${user.user.id}\`
-        **Joined Discord:** ${user.user.createdAt.toLocaleString()}
-        **Member Since:** ${user.joinedAt?.toLocaleString()}
-        **Roles:** ${roles}
-        **Boosting Since:** ${boostingSince}
+        __**User Information**__
+        > **Tag:** ${user.user.tag}
+        > **ID:** ${user.user.id}
+        > **Display Name:** ${user.user.displayName}
+        > **Bot:** ${user.user.bot ? "Yes" : "No"}
+        > **Joined Discord:** ${user.user.createdAt.toLocaleString()}
+
+        __**Member Information**__
+        > **Member Since:** ${user.joinedAt?.toLocaleString()}
+        > **Roles:** ${Profile.formatRoles(roles)}
+        > **Boosting Since:** ${boostingSince}
+        > **Admin:** ${user.permissions.has(PermissionFlagsBits.Administrator) ? "Yes" : "No"}
         `)
       .setTimestamp()
       .setFooter({
@@ -58,6 +70,12 @@ export default class Profile extends Command {
         iconURL: interaction.user.displayAvatarURL(),
       });
 
-    interaction.editReply({ embeds: [profileEmbed] });
+    interaction.reply({ embeds: [profileEmbed], ephemeral: silent });
+    }
+
+  private static formatRoles(roles: string): string {
+    roles.endsWith(", ") ? roles = roles.slice(0, -2) : roles;
+
+    return roles;
   }
 }

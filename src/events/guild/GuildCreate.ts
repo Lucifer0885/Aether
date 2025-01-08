@@ -27,7 +27,7 @@ export default class GuildDelete extends Event {
         new EmbedBuilder()
           .setColor("Green")
           .setDescription(
-            `Hallo ${onwer.user.username}! Thank you for adding me to your server 😄`
+            `Hallo ${onwer.user.displayName}! Thank you for adding me to your server 😄`
           ),
       ],
     }).catch();
