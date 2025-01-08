@@ -14,7 +14,7 @@ export default class CustomClient extends Client implements ICustomClient {
     developmentMode: boolean;
 
     constructor(){
-        super({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages] });
+        super({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages, GatewayIntentBits.AutoModerationExecution] });
 
         this.handler = new Handler(this);
         this.commands = new Collection();

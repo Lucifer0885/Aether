@@ -34,15 +34,15 @@ export default class Blacklist extends Command {
               choices: [
                 {
                   name: WarnLevel.Calm,
-                  value: "calm",
+                  value: "Calm",
                 },
                 {
                   name: WarnLevel.Moderate,
-                  value: "moderate",
+                  value: "Moderate",
                 },
                 {
                   name: WarnLevel.Severe,
-                  value: "severe",
+                  value: "Severe",
                 },
               ],
             },

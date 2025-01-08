@@ -13,7 +13,7 @@ export default class BlacklistAdd extends SubCommand {
 
   async Execute(interaction: ChatInputCommandInteraction) {
     const word = interaction.options.getString("word");
-    const level = (interaction.options.getString("level") || "calm") as WarnLevel;
+    const level = (interaction.options.getString("level") || "Calm") as WarnLevel;
 
     await interaction.deferReply({ ephemeral: true });
 
